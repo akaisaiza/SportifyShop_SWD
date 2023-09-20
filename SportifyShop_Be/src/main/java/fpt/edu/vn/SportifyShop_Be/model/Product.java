@@ -24,7 +24,7 @@ public class Product {
     private String description;
 
     @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    private double price;
 
     @Column(name = "quantity", columnDefinition = "not null")
     private int quantity;
@@ -32,7 +32,7 @@ public class Product {
     @OneToMany(mappedBy = "productID")
     private List<OrderDetail> orderDetails;
 
-    public Product(String productName, String description, BigDecimal price, int quantity) {
+    public Product(String productName, String description, double price, int quantity) {
         this.productName = productName;
         this.description = description;
         this.price = price;
