@@ -1,0 +1,9 @@
+2023-09-20T14:36:59.010+07:00  INFO 19008 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Starting SportifyShopBeApplicationTests using Java 20.0.2 with PID 19008 (started by Admin in C:\Users\Admin\Desktop\Fall2023\SWD392\SWD_Fall203_Project\SportifyShop_SWD\SportifyShop_Be)
+2023-09-20T14:36:59.012+07:00  INFO 19008 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2023-09-20T14:36:59.882+07:00  INFO 19008 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Started SportifyShopBeApplicationTests in 1.155 seconds (process running for 2.074)
+2023-09-20T14:37:43.448+07:00  INFO 14948 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Starting SportifyShopBeApplicationTests using Java 20.0.2 with PID 14948 (started by Admin in C:\Users\Admin\Desktop\Fall2023\SWD392\SWD_Fall203_Project\SportifyShop_SWD\SportifyShop_Be)
+2023-09-20T14:37:43.450+07:00  INFO 14948 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2023-09-20T14:37:44.129+07:00  INFO 14948 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Started SportifyShopBeApplicationTests in 0.901 seconds (process running for 1.635)
+2023-09-20T14:39:03.157+07:00  INFO 19204 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Starting SportifyShopBeApplicationTests using Java 20.0.2 with PID 19204 (started by Admin in C:\Users\Admin\Desktop\Fall2023\SWD392\SWD_Fall203_Project\SportifyShop_SWD\SportifyShop_Be)
+2023-09-20T14:39:03.159+07:00  INFO 19204 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2023-09-20T14:39:04.296+07:00  INFO 19204 --- [main] f.e.v.S.SportifyShopBeApplicationTests   : Started SportifyShopBeApplicationTests in 1.437 seconds (process running for 2.344)
