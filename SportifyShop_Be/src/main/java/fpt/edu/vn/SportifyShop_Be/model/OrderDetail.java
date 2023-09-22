@@ -24,17 +24,17 @@ public class OrderDetail {
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product productID;
 
-    @Column(name = "quantity_ordered", columnDefinition = "not null")
+    @Column(name = "quantity_ordered", columnDefinition = "int not null")
     private int quantityOrdered;
 
-    @Column(name = "total_price", columnDefinition = "not null", precision = 10, scale = 2)
-    private BigDecimal totalPrice;
+    @Column(name = "total_price", columnDefinition = "decimal(10,2) not null")
+    private double totalPrice;
 
 
     public OrderDetail() {
     }
 
-    public OrderDetail(Order orderID, Product productID, int quantityOrdered, BigDecimal totalPrice) {
+    public OrderDetail(Order orderID, Product productID, int quantityOrdered, double totalPrice) {
         this.orderID = orderID;
         this.productID = productID;
         this.quantityOrdered = quantityOrdered;

@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
+
 
 @Getter
 @Setter
@@ -19,11 +21,19 @@ public class CustomerSession {
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customerID;
 
-    @Column(name = "login_time", columnDefinition = "default current_timestamp")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp loginTime;
+    @Column(name = "login_time", columnDefinition = "timestamp default current_timestamp")
+    private LocalDateTime loginTime;
 
-    @Column(name = "logout_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp logoutTime;
+    @Column(name = "logout_time", columnDefinition = "timestamp")
+    private LocalDateTime logoutTime;
+
+    public CustomerSession() {
+    }
+
+    public CustomerSession(String sessionID, Customer customerID, LocalDateTime loginTime, LocalDateTime logoutTime) {
+        this.sessionID = sessionID;
+        this.customerID = customerID;
+        this.loginTime = loginTime;
+        this.logoutTime = logoutTime;
+    }
 }
