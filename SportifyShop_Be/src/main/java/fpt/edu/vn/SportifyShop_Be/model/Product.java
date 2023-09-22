@@ -23,16 +23,16 @@ public class Product {
     @Column(name = "description", columnDefinition = "text")
     private String description;
 
-    @Column(name = "price", precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(name = "price", columnDefinition = "decimal(10,2) not null")
+    private double price;
 
-    @Column(name = "quantity", columnDefinition = "not null")
+    @Column(name = "quantity", columnDefinition = "int not null")
     private int quantity;
 
     @OneToMany(mappedBy = "productID")
     private List<OrderDetail> orderDetails;
 
-    public Product(String productName, String description, BigDecimal price, int quantity) {
+    public Product(String productName, String description, double price, int quantity) {
         this.productName = productName;
         this.description = description;
         this.price = price;

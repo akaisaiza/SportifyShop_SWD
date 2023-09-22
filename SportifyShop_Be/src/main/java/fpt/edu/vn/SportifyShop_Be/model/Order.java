@@ -6,12 +6,13 @@ import lombok.Setter;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Order")
+@Table(name = "[Order]")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +23,15 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customerID;
 
-    @Column(name = "order_date", columnDefinition = "default current_timestamp")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp orderDate;
+    @Column(name = "order_date", columnDefinition = "timestamp default current_timestamp")
+    private LocalDateTime orderDate;
 
     @Column(name = "status", columnDefinition = "varchar(50) not null")
     private String status;
 
     @OneToMany(mappedBy = "orderID")
     private List<OrderDetail> orderDetails;
-    public Order(Customer customerID, Timestamp orderDate, String status) {
+    public Order(Customer customerID, LocalDateTime orderDate, String status) {
         this.customerID = customerID;
         this.orderDate = orderDate;
         this.status = status;
