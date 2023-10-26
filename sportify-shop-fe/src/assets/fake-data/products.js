@@ -1,62 +1,62 @@
 const product_01_image_01 =
-  require("../images/products/product-01 (1).jfif").default;
+  require("../images/products/images.jpg").default;
 const product_01_image_02 =
-  require("../images/products/product-01 (2).jfif").default;
+  require("../images/products/img1.jpg").default;
 
 const product_02_image_01 =
-  require("../images/products/product-02 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_02_image_02 =
-  require("../images/products/product-02 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_03_image_01 =
-  require("../images/products/product-03 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_03_image_02 =
-  require("../images/products/product-03 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_04_image_01 =
-  require("../images/products/product-04 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_04_image_02 =
-  require("../images/products/product-04 (2).jfif").default;
+require("../images/products/images.jpg").default;
 
 const product_05_image_01 =
-  require("../images/products/product-05 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_05_image_02 =
-  require("../images/products/product-05 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_06_image_01 =
-  require("../images/products/product-06 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_06_image_02 =
-  require("../images/products/product-06 (2).jfif").default;
+require("../images/products/images.jpg").default;
 
 const product_07_image_01 =
-  require("../images/products/product-07 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_07_image_02 =
-  require("../images/products/product-07 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_08_image_01 =
-  require("../images/products/product-08 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_08_image_02 =
-  require("../images/products/product-08 (2).jfif").default;
+require("../images/products/images.jpg").default;
 
 const product_09_image_01 =
-  require("../images/products/product-09 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_09_image_02 =
-  require("../images/products/product-09 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_10_image_01 =
-  require("../images/products/product-10 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_10_image_02 =
-  require("../images/products/product-10 (2).jfif").default;
+require("../images/products/images.jpg").default;
 
 const product_11_image_01 =
-  require("../images/products/product-11 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_11_image_02 =
-  require("../images/products/product-11 (2).jfif").default;
+require("../images/products/images (1).jpg").default;
 
 const product_12_image_01 =
-  require("../images/products/product-12 (1).jfif").default;
+require("../images/products/img1.jpg").default;
 const product_12_image_02 =
-  require("../images/products/product-12 (2).jfif").default;
+require("../images/products/images.jpg").default;
 
 const products = [
   {
