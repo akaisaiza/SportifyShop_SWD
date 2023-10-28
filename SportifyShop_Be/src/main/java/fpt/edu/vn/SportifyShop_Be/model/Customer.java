@@ -52,5 +52,8 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(int customerId) {
+    }
+
 
 }

@@ -26,7 +26,7 @@ public class Product {
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(name = "quantity", columnDefinition = "not null")
+    @Column(name = "quantity")
     private int quantity;
 
     @OneToMany(mappedBy = "productID")

@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,7 @@ public class Order {
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customerID;
 
-    @Column(name = "order_date", columnDefinition = "default current_timestamp")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "order_date")
     private Timestamp orderDate;
 
     @Column(name = "status", columnDefinition = "varchar(50) not null")
