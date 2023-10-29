@@ -1,5 +1,7 @@
 package fpt.edu.vn.SportifyShop_Be.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +15,12 @@ public class PaymentCustom {
     private int paymentCustomId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "method_id")
     private PaymentMethod method;
 

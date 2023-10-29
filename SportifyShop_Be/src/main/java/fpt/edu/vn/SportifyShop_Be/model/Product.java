@@ -7,6 +7,8 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Getter
 @Setter
 @Entity
@@ -30,6 +32,7 @@ public class Product {
     private int quantity;
 
     @OneToMany(mappedBy = "productID")
+    @JsonManagedReference
     private List<OrderDetail> orderDetails;
 
     public Product(String productName, String description, BigDecimal price, int quantity) {

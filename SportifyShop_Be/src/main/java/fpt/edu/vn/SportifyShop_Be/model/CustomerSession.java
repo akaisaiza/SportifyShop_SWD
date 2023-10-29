@@ -1,5 +1,7 @@
 package fpt.edu.vn.SportifyShop_Be.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +15,7 @@ public class CustomerSession {
     private String sessionID;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customerID;
 

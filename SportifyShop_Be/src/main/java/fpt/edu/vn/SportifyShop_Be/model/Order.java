@@ -8,6 +8,9 @@ import lombok.Setter;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Getter
 @Setter
 @Entity
@@ -19,6 +22,7 @@ public class Order {
     private int orderID;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")
     private Customer customerID;
 
@@ -29,6 +33,7 @@ public class Order {
     private String status;
 
     @OneToMany(mappedBy = "orderID")
+    @JsonManagedReference
     private List<OrderDetail> orderDetails;
     public Order(Customer customerID, Timestamp orderDate, String status) {
         this.customerID = customerID;

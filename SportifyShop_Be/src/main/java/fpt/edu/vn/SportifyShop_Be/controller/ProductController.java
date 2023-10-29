@@ -35,10 +35,10 @@ public class ProductController {
 
     // API để lấy một sản phẩm theo ID
     @GetMapping("/{id}")
-public ResponseEntity<Product> getProductById(@PathVariable int id) { // Sử dụng int thay vì Long
-    Optional<Product> product = productRepository.findById(id);
-    return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-}
+    public ResponseEntity<Product> getProductById(@PathVariable int id) { // Sử dụng int thay vì Long
+        Optional<Product> product = productRepository.findById(id);
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     // API để tạo một sản phẩm mới
     @PostMapping
@@ -48,21 +48,24 @@ public ResponseEntity<Product> getProductById(@PathVariable int id) { // Sử d�
 
     // API để cập nhật thông tin sản phẩm
     @PutMapping("/{id}")
-public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product updatedProduct) { // Sử dụng int thay vì Long
-    if (!productRepository.existsById(id)) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product updatedProduct) { // Sử dụng
+                                                                                                              // int
+                                                                                                              // thay vì
+                                                                                                              // Long
+        if (!productRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        updatedProduct.setProductID(id);
+        return ResponseEntity.ok(productRepository.save(updatedProduct));
     }
-    updatedProduct.setProductID(id);
-    return ResponseEntity.ok(productRepository.save(updatedProduct));
-}
 
     // API để xóa một sản phẩm
     @DeleteMapping("/{id}")
-public ResponseEntity<Void> deleteProduct(@PathVariable int id) { 
-    if (!productRepository.existsById(id)) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Void> deleteProduct(@PathVariable int id) {
+        if (!productRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        productRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
-    productRepository.deleteById(id);
-    return ResponseEntity.noContent().build();
-}
 }

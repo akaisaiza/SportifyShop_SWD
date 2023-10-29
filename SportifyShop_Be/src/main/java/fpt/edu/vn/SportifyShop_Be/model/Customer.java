@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Getter
 @Setter
 
@@ -36,9 +38,11 @@ public class Customer {
     private String password;
 
     @OneToMany(mappedBy = "customerID")
+    @JsonManagedReference
     private List<Order> orders;
 
     @OneToMany(mappedBy = "customerID")
+    @JsonManagedReference
     private List<CustomerSession> customerSessions;
     public Customer(String firstName, String lastName, String email, String phone, String address, String password) {
         this.firstName = firstName;
@@ -52,8 +56,10 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerId) {
+    public Customer(int customerId2) {
     }
+
+   
 
 
 }

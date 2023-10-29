@@ -23,7 +23,7 @@ public class Admin {
     @Column(name = "full_name", columnDefinition = "varchar(100) not null")
     private String fullName;
 
-    @Column(name = "email", columnDefinition = "varchar(100) unique not null")
+    @Column(name = "email", columnDefinition = "varchar(100)")
     private  String email;
 
     public Admin(String username, String password, String fullName, String email) {

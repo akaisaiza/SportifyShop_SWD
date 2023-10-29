@@ -11,25 +11,40 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fpt.edu.vn.SportifyShop_Be.model.Customer;
 import fpt.edu.vn.SportifyShop_Be.model.Order;
+import fpt.edu.vn.SportifyShop_Be.service.CustomerService;
 import fpt.edu.vn.SportifyShop_Be.service.OrderService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
 
     @Autowired
-    private OrderService orderService;
+    private CustomerService customerService;
 
-    // API để tạo đơn đặt hàng cho khách hàng
-    @PostMapping("/{customerId}/orders")
-    public ResponseEntity<Order> createOrderForCustomer(@PathVariable int customerId, @RequestBody Order order) {
-        // Ở đây, bạn có thể kiểm tra xem khách hàng có tồn tại (dựa trên customerId) trước khi tạo đơn đặt hàng.
-        // Nếu khách hàng không tồn tại, bạn có thể trả về một lỗi hoặc xử lý một cách phù hợp.
-        // Sau đó, bạn có thể gán customerId cho đơn đặt hàng trước khi tạo đơn đặt hàng.
-        order.setCustomerID(new Customer(customerId));
+    // API để tạo người dùng mới
+    @PostMapping
+    public Customer createCustomer(@RequestBody Customer customer) {
+        return customerService.createCustomer(customer);
+    }
 
-        Order createdOrder = orderService.createOrder(order);
-        return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
+    // API để lấy thông tin người dùng bằng ID
+    @GetMapping("/{customerId}")
+    public Customer getCustomerById(@PathVariable int customerId) {
+        return customerService.getCustomerById(customerId);
+    }
+
+    // API để cập nhật thông tin người dùng
+    @PutMapping("/{customerId}")
+    public Customer updateCustomer(@PathVariable int customerId, @RequestBody Customer customer) {
+        return customerService.updateCustomer(customerId, customer);
+    }
+
+    // API để xóa người dùng bằng ID
+    @DeleteMapping("/{customerId}")
+    public void deleteCustomer(@PathVariable int customerId) {
+        customerService.deleteCustomer(customerId);
     }
 }
-

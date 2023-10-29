@@ -1,5 +1,7 @@
 package fpt.edu.vn.SportifyShop_Be.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -17,10 +19,13 @@ public class OnlinePayment {
     private String date;
     private Boolean status;
     @ManyToOne
+    @JsonBackReference
+
     @JoinColumn(name = "method_id")
     private PaymentMethod method;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "order_id")
     private Order order;
 }

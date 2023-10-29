@@ -1,6 +1,9 @@
 package fpt.edu.vn.SportifyShop_Be.model;
 
 import lombok.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 @Getter
 @Setter
@@ -14,6 +17,7 @@ public class Rate {
     private String comment;
     private String date_rate;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "OrderId")
     private Order order;
 }
