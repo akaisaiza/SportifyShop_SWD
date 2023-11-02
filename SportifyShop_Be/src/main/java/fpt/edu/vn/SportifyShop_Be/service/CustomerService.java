@@ -10,15 +10,17 @@ import fpt.edu.vn.SportifyShop_Be.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
-
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Customer createCustomer(Customer customer) {
-        // Thực hiện logic kiểm tra hợp lệ của thông tin khách hàng (ví dụ: kiểm tra email đã tồn tại chưa)
-        // Nếu thông tin hợp lệ, lưu khách hàng vào cơ sở dữ liệu và trả về khách hàng đã được tạo
-        // Nếu thông tin không hợp lệ, xử lý ngoại lệ hoặc trả về thông báo lỗi
+    public Customer registerCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
 
+    public Customer loginCustomer(String email, String password) {
+        return customerRepository.findByEmail(email);
+    }
+    public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
 

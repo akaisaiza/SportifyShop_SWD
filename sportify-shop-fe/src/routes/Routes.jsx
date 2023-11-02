@@ -4,8 +4,8 @@ import Home from "../pages/Home";
 import Catalog from "../pages/Catalog";
 import Cart from "../pages/Cart";
 import Product from "../pages/Product";
-
 const RouteLinks = () => {
+  
   return (
     <Routes>
       <Route path="/nike_webshop" element={<Home />} />

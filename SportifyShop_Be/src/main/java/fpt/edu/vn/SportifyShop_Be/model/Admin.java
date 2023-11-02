@@ -14,7 +14,7 @@ public class Admin {
     @Column(name = "admin_id")
     private int adminID;
 
-    @Column(name = "username", columnDefinition = "varchar(50) unique not null")
+    @Column(name = "username" ,nullable = false)
     private String username;
 
     @Column(name = "password", columnDefinition = "varchar(255) not null")
