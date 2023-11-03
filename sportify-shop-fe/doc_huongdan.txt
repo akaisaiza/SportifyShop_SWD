@@ -1,8 +1,0 @@
-Step 1 :
-open terminal in this forder : npm i or( npm install)
-Step 2: 
-npm start 
-
-Luu y :
-
-ko commit node-modul ( vi no nang) 
