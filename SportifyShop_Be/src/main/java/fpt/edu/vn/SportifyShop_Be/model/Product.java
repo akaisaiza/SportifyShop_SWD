@@ -24,7 +24,8 @@ public class Product {
 
     @Column(name = "description", columnDefinition = "text")
     private String description;
-
+    @Column(name = "urlImg", columnDefinition = "text")
+    private String urlImg;
     @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
@@ -35,11 +36,12 @@ public class Product {
     @JsonManagedReference
     private List<OrderDetail> orderDetails;
 
-    public Product(String productName, String description, BigDecimal price, int quantity) {
+    public Product(String productName, String description,String urlImg, BigDecimal price, int quantity) {
         this.productName = productName;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
+        this.urlImg = urlImg;
     }
 
     public Product() {

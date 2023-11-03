@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ProductView from "./ProductView";
 import Button from "./Button";
-import productData from "./../assets/fake-data/products";
 import { remove } from "../redux/product-modal/productModalSlice";
 
 const ProductViewModal = () => {
@@ -15,7 +14,14 @@ const ProductViewModal = () => {
   // const product = productData.getProductBySlug("nike-sportswear-swoosh");
 
   useEffect(() => {
-    setProduct(productData.getProductBySlug(productSlug));
+    fetch(`http://localhost:8080/api/products/${productSlug}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch product data:", error);
+      });
   }, [productSlug]);
 
   return (

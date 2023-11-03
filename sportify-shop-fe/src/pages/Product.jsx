@@ -1,24 +1,33 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import Helmet from "./../components/Helmet";
 import Section, { SectionTitle, SectionBody } from "./../components/Section";
 import Grid from "./../components/Grid";
 import ProductCard from "./../components/ProductCard";
 import ProductView from "./../components/ProductView";
 
-import productData from "./../assets/fake-data/products";
-
 const Product = (props) => {
-  const product = productData.getProductBySlug(props.match.params.slug);
-
-  const relateProducts = productData.getProducts(8);
+  const [product, setProduct] = useState({});
+  const [relateProducts, setRelateProducts] = useState([]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [product]);
+    const productId = props.slug; // Change this to the desired product ID
+
+    // Fetch the specific product data based on its ID
+    fetch(`http://localhost:8080/api/products/${productId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch product data:", error);
+      });
+
+    // Fetch related products or use a separate API endpoint for this
+    // Modify the code to fetch related products if needed
+  }, []);
 
   return (
-    <Helmet title={product.title}>
+    <Helmet title={product.productName}>
       <Section>
         <SectionBody>
           <ProductView product={product} />
@@ -31,11 +40,10 @@ const Product = (props) => {
             {relateProducts.map((item, index) => (
               <ProductCard
                 key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
+                urlImg={item.urlImg}
+                productName={item.productName}
                 price={Number(item.price)}
-                slug={item.slug}
+                productID={item.productID}
               />
             ))}
           </Grid>

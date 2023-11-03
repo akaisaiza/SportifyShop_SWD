@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -18,6 +18,20 @@ import banner2 from "../assets/images/banner-2.png";
 import banner3 from "../assets/images/banner-3.jpg";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // Fetch product data from the API
+    fetch("http://localhost:8080/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        // Set the products state with the first 3 products
+        setProducts(data.slice(0, 3));
+      })
+      .catch((error) => {
+        console.error("Failed to fetch product data:", error);
+      });
+  }, []);
   return (
     <Helmet title="Home">
       {/* hero slider */}
@@ -64,14 +78,13 @@ const Home = () => {
         <SectionTitle>The Latest And Greatest</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {productData.getProducts(4).map((item, index) => (
+            {products.map((item, index) => (
               <ProductCard
                 key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
+                urlImg={item.urlImg}
+                productName={item.productName}
                 price={Number(item.price)}
-                slug={item.slug}
+                productID={item.productID}
               />
             ))}
           </Grid>
@@ -95,15 +108,14 @@ const Home = () => {
         <SectionTitle>More to Explore</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {productData.getProducts(12).map((item, index) => (
+            {products.map((item, index) => (
               <ProductCard
-                key={index}
-                img01={item.image01}
-                img02={item.image02}
-                name={item.title}
-                price={Number(item.price)}
-                slug={item.slug}
-              />
+              key={index}
+              urlImg={item.urlImg}
+              productName={item.productName}
+              price={Number(item.price)}
+              productID={item.productID}
+            />
             ))}
           </Grid>
         </SectionBody>

@@ -7,7 +7,7 @@ import ProductCard from "./ProductCard";
 const InfinityList = (props) => {
   const listRef = useRef(null);
 
-  const perLoad = 6; // items each load
+  const perLoad = 6; 
 
   const [data, setData] = useState([]);
 
@@ -19,20 +19,6 @@ const InfinityList = (props) => {
     setData(props.data.slice(0, perLoad));
     setIndex(1);
   }, [props.data]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (listRef && listRef.current) {
-        if (
-          window.scrollY + window.innerHeight >=
-          listRef.current.clientHeight + listRef.current.offsetTop + 200
-        ) {
-          // console.log("bottom reach");
-          setLoad(true);
-        }
-      }
-    });
-  }, [listRef]);
 
   useEffect(() => {
     const getItems = () => {
@@ -57,11 +43,10 @@ const InfinityList = (props) => {
         {data.map((item, index) => (
           <ProductCard
             key={index}
-            img01={item.image01}
-            img02={item.image02}
-            name={item.title}
+            img01={item.urlImg}
+            name={item.productName}
             price={Number(item.price)}
-            slug={item.slug}
+            slug={item.productID}
           />
         ))}
       </Grid>

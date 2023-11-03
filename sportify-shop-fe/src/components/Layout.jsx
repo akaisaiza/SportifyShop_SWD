@@ -7,9 +7,9 @@ import RouteLinks from "../routes/Routes";
 import LoginPage from "./LoginPage";
 const Layout = () => {
   const [token, setToken] = useState();
-  if(!token) {
-    return <LoginPage setToken={setToken} />
-  }
+  // if(!token) {
+  //   return <LoginPage setToken={setToken} />
+  // }
   return (
     <div>
       <Header />

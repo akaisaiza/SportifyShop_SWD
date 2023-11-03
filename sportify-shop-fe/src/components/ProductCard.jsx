@@ -16,12 +16,11 @@ const ProductCard = (props) => {
 
   return (
     <div className="product-card">
-      <Link to={`/nike_webshop/catalog/${props.slug}`}>
+      <Link to={`/nike_webshop/catalog/${props.productID}`}>
         <div className="product-card__image">
-          <img src={props.img01} alt={props.name} />
-          <img src={props.img02} alt={props.name} />
+          <img src={props.urlImg} alt={props.productName} />
         </div>
-        <h3 className="product-card__name">{props.name}</h3>
+        <h3 className="product-card__name">{props.productName}</h3>
         <div className="product-card__price">
           ${numberWithCommas(props.price)}
           <span className="product-card__price__old">
@@ -34,7 +33,7 @@ const ProductCard = (props) => {
           size="sm"
           icon="bx bx-card"
           animate={true}
-          onClick={() => dispatch(set(props.slug))}
+          onClick={() => dispatch(set(props.productID))}
         >
           Buy
         </Button>
@@ -44,11 +43,10 @@ const ProductCard = (props) => {
 };
 
 ProductCard.propTypes = {
-  img01: PropTypes.string.isRequired,
-  img02: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  productName: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  slug: PropTypes.string.isRequired,
+  productID: PropTypes.number.isRequired,
 };
 
 export default ProductCard;

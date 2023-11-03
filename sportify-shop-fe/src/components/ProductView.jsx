@@ -9,24 +9,12 @@ import numberWithCommas from "../utils/numberWithCommas";
 
 const ProductView = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Use useNavigate for navigation
-  const { slug } = useParams(); // Use useParams to get route parameters
+  const navigate = useNavigate(); 
+  const { productID } = useParams(); 
 
   let { product } = props;
-
-  if (product === undefined) {
-    product = {
-      price: 0,
-      title: "",
-      colors: [],
-      size: [],
-    };
-  }
-
-  const [previewImg, setPreviewImg] = useState(product.image01);
+  const [previewImg, setPreviewImg] = useState('');
   const [descriptionExpand, setDescriptionExpand] = useState(false);
-  const [color, setColor] = useState(undefined);
-  const [size, setSize] = useState(undefined);
   const [quantity, setQuantity] = useState(1);
 
   const updateQuantity = (type) => {
@@ -38,52 +26,30 @@ const ProductView = (props) => {
   };
 
   useEffect(() => {
-    setPreviewImg(product.image01);
+    setPreviewImg(product.urlImg);
     setQuantity(1);
-    setColor(undefined);
-    setSize(undefined);
   }, [product]);
 
-  const check = () => {
-    if (color === undefined) {
-      alert("Vui lòng chọn màu sắc!");
-      return false;
-    } else if (size === undefined) {
-      alert("Vui lòng chọn kích cỡ!");
-      return false;
-    }
-
-    return true;
-  };
-
   const addToCart = () => {
-    if (check()) {
       dispatch(
         addItem({
-          slug: product.slug,
-          color,
-          size,
+          productID: product.productID,
           quantity,
           price: product.price,
         })
       );
       alert("success");
-    }
   };
 
   const goToCart = () => {
-    if (check()) {
       dispatch(
         addItem({
-          slug: product.slug,
-          color,
-          size,
+          productID: product.productID,
           quantity,
           price: product.price,
         })
       );
       navigate("/nike_webshop/cart"); // Use navigate to go to the cart route
-    }
   };
   return (
     <div className="product">
@@ -91,15 +57,9 @@ const ProductView = (props) => {
         <div className="product__images__list">
           <div
             className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image01)}
+            onClick={() => setPreviewImg(product.urlImg)}
           >
-            <img src={product.image01} alt="image01" />
-          </div>
-          <div
-            className="product__images__list__item"
-            onClick={() => setPreviewImg(product.image02)}
-          >
-            <img src={product.image02} alt="image02" />
+            <img src={product.urlImg} alt="image01" />
           </div>
         </div>
 
@@ -127,50 +87,13 @@ const ProductView = (props) => {
       </div>
 
       <div className="product__info">
-        <h1 className="product__info__title">{product.title}</h1>
+        <h1 className="product__info__title">{product.productName}</h1>
 
         <div className="product__info__item">
           <span className="product__info__item__price">
             ${numberWithCommas(product.price)}
           </span>
         </div>
-
-        <div className="product__info__item">
-          <div className="product__info__item__title">Color</div>
-          <div className="product__info__item__list">
-            {product.colors.map((item, index) => (
-              <div
-                key={index}
-                className={`product__info__item__list__item ${
-                  color === item ? "active" : ""
-                }`}
-                onClick={() => setColor(item)}
-              >
-                <div className={`circle bg-${item}`}></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="product__info__item">
-          <div className="product__info__item__title">Size</div>
-          <div className="product__info__item__list">
-            {product.size.map((item, index) => (
-              <div
-                key={index}
-                className={`product__info__item__list__item ${
-                  size === item ? "active" : ""
-                }`}
-                onClick={() => setSize(item)}
-              >
-                <span className="product__info__item__list__item__size">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className="product__info__item">
           <div className="product__info__item__title">Quantity</div>
           <div className="product__info__item__quantity">
