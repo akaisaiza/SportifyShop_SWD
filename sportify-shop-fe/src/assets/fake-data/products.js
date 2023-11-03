@@ -1,69 +1,11 @@
-const product_01_image_01 =
-  require("../images/products/images.jpg").default;
-const product_01_image_02 =
-  require("../images/products/img1.jpg").default;
-
-const product_02_image_01 =
-require("../images/products/img1.jpg").default;
-const product_02_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_03_image_01 =
-require("../images/products/img1.jpg").default;
-const product_03_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_04_image_01 =
-require("../images/products/img1.jpg").default;
-const product_04_image_02 =
-require("../images/products/images.jpg").default;
-
-const product_05_image_01 =
-require("../images/products/img1.jpg").default;
-const product_05_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_06_image_01 =
-require("../images/products/img1.jpg").default;
-const product_06_image_02 =
-require("../images/products/images.jpg").default;
-
-const product_07_image_01 =
-require("../images/products/img1.jpg").default;
-const product_07_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_08_image_01 =
-require("../images/products/img1.jpg").default;
-const product_08_image_02 =
-require("../images/products/images.jpg").default;
-
-const product_09_image_01 =
-require("../images/products/img1.jpg").default;
-const product_09_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_10_image_01 =
-require("../images/products/img1.jpg").default;
-const product_10_image_02 =
-require("../images/products/images.jpg").default;
-
-const product_11_image_01 =
-require("../images/products/img1.jpg").default;
-const product_11_image_02 =
-require("../images/products/images (1).jpg").default;
-
-const product_12_image_01 =
-require("../images/products/img1.jpg").default;
-const product_12_image_02 =
-require("../images/products/images.jpg").default;
-
+const img1 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsXVStoIuawAYblCkKpNtKBEzxBDHwrQnCqg&usqp=CAU";
+const img2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOxK0jMkZ0sfoFRCmofqHY1OsAz06P_AFyAQ&usqp=CAU";
 const products = [
   {
     title: "Nike Dri-FIT",
     price: "44",
-    image01: product_01_image_01,
-    image02: product_01_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "shorts",
     colors: ["white", "red"],
     slug: "nike-dri-fit",
@@ -74,8 +16,8 @@ const products = [
   {
     title: "Jordan Sport DNA",
     price: "50",
-    image01: product_02_image_01,
-    image02: product_02_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "t-shirt",
     colors: ["white", "red", "black"],
     slug: "jordan-sport-dna",
@@ -86,8 +28,8 @@ const products = [
   {
     title: "Nike Air Force 1 '07",
     price: "170",
-    image01: product_03_image_01,
-    image02: product_03_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "shoes",
     colors: ["red", "blue"],
     slug: "nike-air-force-1-07",
@@ -98,8 +40,8 @@ const products = [
   {
     title: "Nike Waffle One",
     price: "200",
-    image01: product_04_image_01,
-    image02: product_04_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "shoes",
     colors: ["white", "red", "black", "blue", "orange"],
     slug: "nike-waffle-one",
@@ -110,8 +52,8 @@ const products = [
   {
     title: "Nike Blazer Mid '77 SE",
     price: "320",
-    image01: product_05_image_01,
-    image02: product_05_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "shoes",
     colors: ["white", "red", "black"],
     slug: "nike-blazer-mid-77-se",
@@ -122,8 +64,8 @@ const products = [
   {
     title: "Nike Dri-FIT Indy Zip-Front",
     price: "90",
-    image01: product_06_image_01,
-    image02: product_06_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "bra",
     colors: ["blue"],
     slug: "nike-dri-fit-indy-zip-front",
@@ -134,8 +76,8 @@ const products = [
   {
     title: "Nike Offcourt Duo",
     price: "85",
-    image01: product_07_image_01,
-    image02: product_07_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "slide",
     colors: ["white", "blue"],
     slug: "nike-offcourt-duo",
@@ -146,8 +88,8 @@ const products = [
   {
     title: "Nike Sleeve Dress Sportswear",
     price: "130",
-    image01: product_08_image_01,
-    image02: product_08_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "dress",
     colors: ["black"],
     slug: "nike-sleeve-dress-sportswear",
@@ -158,8 +100,8 @@ const products = [
   {
     title: "Nike Sportswear Icon Clash",
     price: "140",
-    image01: product_09_image_01,
-    image02: product_09_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "dress",
     colors: ["blue", "black"],
     slug: "nike-sportswear-icon-clash",
@@ -170,8 +112,8 @@ const products = [
   {
     title: "Nike Sportswear",
     price: "90",
-    image01: product_10_image_01,
-    image02: product_10_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "bucket-hat",
     colors: ["blue"],
     slug: "nike-sportswear",
@@ -182,8 +124,8 @@ const products = [
   {
     title: "Nike Yoga Dri-FIT Indy",
     price: "95",
-    image01: product_11_image_01,
-    image02: product_11_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "bra",
     colors: ["red"],
     slug: "nike-yoga-dri-fit-indy",
@@ -194,8 +136,8 @@ const products = [
   {
     title: "Nike Sportswear Swoosh",
     price: "120",
-    image01: product_12_image_01,
-    image02: product_12_image_02,
+    image01: img1,
+    image02: img2,
     categorySlug: "t-shirt",
     colors: ["white", "black"],
     slug: "nike-sportswear-swoosh",
