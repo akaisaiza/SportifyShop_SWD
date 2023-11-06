@@ -9,6 +9,7 @@ import CartItem from "../components/CartItem";
 import numberWithCommas from "./../utils/numberWithCommas";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useAuth } from "../redux/AuthContext";
+import ConfirmPopup from "../components/OrderConfirm"; 
 const Cart = () => {
   const navigate = useNavigate(); // useNavigate hook for redirection
   const { currentUser } = useAuth(); // Assuming useAuth provides the current user object
@@ -19,12 +20,14 @@ const Cart = () => {
   const [paymentMethod, setPaymentMethod] = useState("1"); // Default is "On delivery"
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const handlePaymentSuccess = (details, data) => {
     alert("Payment Successful!");
     console.log(details, data);
     setOrderSuccess(true);
     setShowPaymentModal(false);
   };
+  
   const renderPayPalButtons = () => {
     return (
       <PayPalScriptProvider options={{ "AY3c8KVgmmGEVnNijynYLlyqY5HPgtCcpMz5UnFyS1UMsicz9IxR3o7-fkbygUFwTVp_RIfHhzGRi-68": "ENqGvuKXmTj8Y9ncXxImaWJ2Z3YYmiVS15ByQMNMIcAShAPi54ZubUF0NomlkQ-ZuDIiLQftBa96Whc0" }}>
@@ -50,8 +53,7 @@ const Cart = () => {
   };
   const handlePlaceOrder = () => {
     if (paymentMethod === "1") {
-      alert("Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn.");
-      setOrderSuccess(true);
+      setShowSuccessPopup(true);
     } else if (paymentMethod === "2") {
       setShowPaymentModal(true);
     } else {
@@ -110,11 +112,10 @@ const Cart = () => {
           ))}
         </div>
       </div>
-      {orderSuccess && (
-        <div className="order-success-message">
-          Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn.
-        </div>
-      )}
+      <ConfirmPopup
+      isOpen={showSuccessPopup}
+      handleClosePopup={() => setShowSuccessPopup(false)}
+    />
        {showPaymentModal && renderPayPalButtons()}
       <Modal isOpen={showPaymentModal} toggle={() => setShowPaymentModal(false)}>
         <ModalHeader>Payment Method</ModalHeader>
