@@ -112,7 +112,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="header__menu__item header__menu__right__item">
-                  <Link to="/nike_webshop/register">
+                  <Link to="/Register">
                     Register
                   </Link>
                 </div>

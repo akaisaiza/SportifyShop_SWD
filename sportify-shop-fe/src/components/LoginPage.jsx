@@ -1,7 +1,7 @@
 // Login.js
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, CardBody, CardSubtitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../redux/AuthContext';
 
@@ -28,7 +28,7 @@ const Login = () => {
         }
       });
 
-      if (response.data && response.data.token) { 
+      if (response.data) { 
         login(response.data.token); 
         navigate('/nike_webshop');
       } else {
@@ -75,6 +75,9 @@ const Login = () => {
                 <Button type="submit" color="primary">
                   Login
                 </Button>
+                <Link to="/Register">
+                    Register
+                  </Link>
               </Form>
             </CardBody>
           </Card>

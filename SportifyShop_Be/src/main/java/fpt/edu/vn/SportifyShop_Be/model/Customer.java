@@ -3,29 +3,29 @@ package fpt.edu.vn.SportifyShop_Be.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Getter
 @Setter
-
 @Entity
-@Table(name = "Customer")
+@Table(name = "Customer", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore unknown fields in JSON
+
 public class Customer {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerID;
 
-    @Column(name = "first_name", columnDefinition = "varchar(50) not null")
+    @Column(name = "first_name", columnDefinition = "varchar(50)")
     private String firstName;
 
-    @Column(name = "last_name", columnDefinition = "varchar(50) not null")
+    @Column(name = "last_name", columnDefinition = "varchar(50)")
     private String lastName;
 
-    @Column(name = "email", columnDefinition = "varchar(100) unique not null")
+    @Column(name = "email", columnDefinition = "varchar(100)")
     private String email;
 
     @Column(name = "phone", columnDefinition = "varchar(15)")
