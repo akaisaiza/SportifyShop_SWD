@@ -1,83 +1,75 @@
-import React, { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardSubtitle,
-  CardBody,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
-import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios
+// Login.js
+import React, { useState } from 'react';
+import { Container, Row, Col, Card, CardBody, CardSubtitle, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from '../redux/AuthContext';
 
-const Login = (props) => {
+const Login = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { login } = useAuth(); // Use the login function provided by AuthContext
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const loginHandler = async (ev) => {
-    ev.preventDefault();
+  const loginHandler = async (event) => {
+    event.preventDefault();
     if (!username || !password) {
+      alert('Please fill in both fields.');
       return;
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/login", {
+      const response = await axios.post('http://localhost:8080/api/auth/login', {
         email: username,
         password: password,
       }, {
         headers: {
-          'Content-Type': 'application/json' 
+          'Content-Type': 'application/json'
         }
       });
 
-      if (response.data) {
-        props.setToken(response.data);
-        navigate("/nike_webshop");
+      if (response.data && response.data.token) { 
+        login(response.data.token); 
+        navigate('/nike_webshop');
       } else {
-        alert("Login failed");
+        alert('Invalid login credentials');
       }
     } catch (error) {
-      // Handle network or other errors
-      console.error("Login error:", error);
+      alert('An error occurred during login.');
+      console.error('Login error:', error);
     }
   };
 
   return (
     <Container>
-      <Row>
-        <Col>
+      <Row className="justify-content-center">
+        <Col md="6">
           <Card>
             <CardBody>
               <CardSubtitle className="mb-2 text-muted" tag="h1">
                 Login to Shoptify
               </CardSubtitle>
               <Form onSubmit={loginHandler}>
-                <FormGroup className="pb-2 mr-sm-2 mb-sm-0">
-                  <Label for="exampleEmail" className="mr-sm-2">
-                    Email
-                  </Label>
+                <FormGroup>
+                  <Label for="exampleEmail">Email</Label>
                   <Input
                     type="email"
                     name="email"
                     id="exampleEmail"
-                    onChange={(ev) => setUsername(ev.currentTarget.value)}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter email"
                   />
                 </FormGroup>
-                <FormGroup className="pb-2 mr-sm-2 mb-sm-0">
-                  <Label for="examplePassword" className="mr-sm-2">
-                    Password
-                  </Label>
+                <FormGroup>
+                  <Label for="examplePassword">Password</Label>
                   <Input
                     type="password"
                     name="password"
                     id="examplePassword"
-                    onChange={(ev) => setPassword(ev.currentTarget.value)}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
                   />
                 </FormGroup>
                 <Button type="submit" color="primary">

@@ -7,15 +7,12 @@ import ProductCard from "./../components/ProductCard";
 import ProductView from "./../components/ProductView";
 
 import productData from "./../assets/fake-data/products";
-
-const Product = (props) => {
-  const product = productData.getProductBySlug(props.match.params.slug);
+import { useParams } from 'react-router-dom';
+const Product = () => {
+  const { slug } = useParams();
+  const product = productData.getProductBySlug(slug);
 
   const relateProducts = productData.getProducts(8);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [product]);
 
   return (
     <Helmet title={product.title}>

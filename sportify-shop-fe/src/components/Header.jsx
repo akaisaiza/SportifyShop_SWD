@@ -1,12 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-
 import logo from "../assets/images/Logo-2.png";
 
+// Add the useAuth hook import
+import { useAuth } from "../redux/AuthContext"; // Adjust the path as needed
+
+// Navigation items
 const mainNav = [
   {
     display: "Home",
-    // path: "/",
     path: "/nike_webshop",
   },
   {
@@ -16,20 +18,21 @@ const mainNav = [
   {
     display: "About",
     path: "/accessories",
-    // path: "/nike_webshop",
   },
   {
     display: "Contact",
     path: "/contact",
-    // path: "/nike_webshop",
   },
 ];
 
 const Header = () => {
   const { pathname } = useLocation();
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
-
   const headerRef = useRef(null);
+  const menuLeft = useRef(null);
+
+  // Retrieve the auth status from useAuth
+  const { user } = useAuth(); // Assuming useAuth returns an object with a user field
 
   useEffect(() => {
     const scrollHandler = () => {
@@ -44,27 +47,24 @@ const Header = () => {
         }
       }
     };
-  
+
     window.addEventListener("scroll", scrollHandler);
-  
-    return () => {
-      window.removeEventListener("scroll", scrollHandler);
-    };
+    return () => window.removeEventListener("scroll", scrollHandler);
   }, []);
-  
-  
-  
 
-  const menuLeft = useRef(null);
-
-  const menuToggle = () => menuLeft.current.classList.toggle("active");
+  // Toggles the menu on mobile view
+  const menuToggle = () => {
+    if (menuLeft.current) {
+      menuLeft.current.classList.toggle("active");
+    }
+  };
 
   return (
     <div className="header" ref={headerRef}>
       <div className="container">
         <div className="header__logo">
           <Link to="/">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo" />
           </Link>
         </div>
         <div className="header__menu">
@@ -90,7 +90,7 @@ const Header = () => {
             ))}
           </div>
           <div className="header__menu__right">
-            <div className="header__menu__item header__menu__right__item">
+          <div className="header__menu__item header__menu__right__item">
               <i className="bx bx-search"></i>
             </div>
             <div className="header__menu__item header__menu__right__item">
@@ -98,9 +98,26 @@ const Header = () => {
                 <i className="bx bx-shopping-bag"></i>
               </Link>
             </div>
-            <div className="header__menu__item header__menu__right__item">
-              <i className="bx bx-user"></i>
-            </div>
+            {user ? (
+              // If user is logged in, show user icon
+              <div className="header__menu__item header__menu__right__item">
+                <i className="bx bx-user"></i>
+              </div>
+            ) : (
+              // If not logged in, show Login and Register links
+              <>
+                <div className="header__menu__item header__menu__right__item">
+                  <Link to="/Login">
+                    Login
+                  </Link>
+                </div>
+                <div className="header__menu__item header__menu__right__item">
+                  <Link to="/nike_webshop/register">
+                    Register
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

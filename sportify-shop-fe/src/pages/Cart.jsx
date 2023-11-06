@@ -1,22 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import productData from "../assets/fake-data/products";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 import Helmet from "./../components/Helmet";
 import Button from "./../components/Button";
 import CartItem from "../components/CartItem";
 import numberWithCommas from "./../utils/numberWithCommas";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import { useAuth } from "../redux/AuthContext";
 const Cart = () => {
+  const navigate = useNavigate(); // useNavigate hook for redirection
+  const { currentUser } = useAuth(); // Assuming useAuth provides the current user object
   const cartItems = useSelector((state) => state.cartItems.value);
   const [cartProducts, setCartProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [paymentMethod, setPaymentMethod] = useState("1"); // Mặc định là "Khi nhận hàng"
+  const [paymentMethod, setPaymentMethod] = useState("1"); // Default is "On delivery"
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-
+  const handlePaymentSuccess = (details, data) => {
+    alert("Payment Successful!");
+    console.log(details, data);
+    setOrderSuccess(true);
+    setShowPaymentModal(false);
+  };
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/login'); 
+    }
+  }, [currentUser, navigate]);
+  const renderPayPalButtons = () => {
+    return (
+      <PayPalScriptProvider options={{ "AY3c8KVgmmGEVnNijynYLlyqY5HPgtCcpMz5UnFyS1UMsicz9IxR3o7-fkbygUFwTVp_RIfHhzGRi-68": "ENqGvuKXmTj8Y9ncXxImaWJ2Z3YYmiVS15ByQMNMIcAShAPi54ZubUF0NomlkQ-ZuDIiLQftBa96Whc0" }}>
+        <PayPalButtons 
+          style={{ layout: "vertical" }}
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: totalPrice.toString(), // Ensure this is a string
+                },
+              }],
+            });
+          }}
+          onApprove={(data, actions) => {
+            return actions.order.capture().then((details) => {
+              handlePaymentSuccess(details, data);
+            });
+          }}
+        />
+      </PayPalScriptProvider>
+    );
+  };
   const handlePlaceOrder = () => {
     if (paymentMethod === "1") {
       alert("Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn.");
@@ -84,6 +120,7 @@ const Cart = () => {
           Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn.
         </div>
       )}
+       {showPaymentModal && renderPayPalButtons()}
       <Modal isOpen={showPaymentModal} toggle={() => setShowPaymentModal(false)}>
         <ModalHeader>Payment Method</ModalHeader>
         <ModalBody>

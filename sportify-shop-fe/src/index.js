@@ -8,12 +8,15 @@ import "./sass/index.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
+import { AuthProvider } from "./redux/AuthContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+      <AuthProvider>
       <Layout />
+      </AuthProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
