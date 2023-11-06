@@ -25,11 +25,6 @@ const Cart = () => {
     setOrderSuccess(true);
     setShowPaymentModal(false);
   };
-  useEffect(() => {
-    if (!currentUser) {
-      navigate('/login'); 
-    }
-  }, [currentUser, navigate]);
   const renderPayPalButtons = () => {
     return (
       <PayPalScriptProvider options={{ "AY3c8KVgmmGEVnNijynYLlyqY5HPgtCcpMz5UnFyS1UMsicz9IxR3o7-fkbygUFwTVp_RIfHhzGRi-68": "ENqGvuKXmTj8Y9ncXxImaWJ2Z3YYmiVS15ByQMNMIcAShAPi54ZubUF0NomlkQ-ZuDIiLQftBa96Whc0" }}>
